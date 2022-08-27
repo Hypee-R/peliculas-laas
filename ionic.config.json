@@ -1,0 +1,8 @@
+{
+  "name": "PeliculasLAAS",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular",
+  "id": "e38a5a07"
+}
