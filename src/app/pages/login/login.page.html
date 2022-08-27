@@ -1,0 +1,22 @@
+<ion-header>
+
+</ion-header>
+
+<ion-content class="ion-padding" color="dark">
+
+    <div class="title">
+        <h4>Login</h4>
+    </div>
+
+    <ion-input placeholder="Usuario" name="Usuario" class="primary-input" [(ngModel)]="usuario"></ion-input>
+    <ion-input placeholder="Contraseña" name="contrasena" class="primary-input" type="password" [(ngModel)]="password"></ion-input>
+
+    <div class="ion-margin-top ion-text-center">
+        <ion-button expand="block" (click)="login()" [disabled]="loading">Ingresar</ion-button>
+    </div>
+
+    <div class="ion-margin-top ion-text-center">
+        <a (click)="dismiss()">Cerrar</a>
+    </div>
+
+</ion-content>

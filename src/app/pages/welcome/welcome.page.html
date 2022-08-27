@@ -1,0 +1,21 @@
+<ion-header>
+
+</ion-header>
+
+<ion-content class="ion-padding ion-text-center" color="tertiary">
+
+    <img src="assets/icon/logo_peliculas.png" alt="" style="width: 200px; margin-top: 5em;">
+
+    <div class="title">
+        <h2>Bienvenido</h2>
+    </div>
+
+    <div class="ion-margin-top">
+        <ion-button expand="block" class="ion-margin-top" (click)="showLogin()" *ngIf="!modalIsOpen">LOGIN</ion-button>
+    </div>
+
+    <div class="ion-margin-top ion-text-center">
+        <a (click)="showRegister()">Registrar Usuario</a>
+    </div>
+
+</ion-content>

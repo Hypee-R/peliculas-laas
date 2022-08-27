@@ -1,0 +1,76 @@
+<ion-header [translucent]="true">
+    <ion-toolbar>
+        <ion-buttons slot="primary">
+            <ion-button id="nested-button">
+                <ion-icon slot="icon-only" ios="ellipsis-horizontal" md="ellipsis-vertical"></ion-icon>
+            </ion-button>
+            <ion-popover trigger="nested-button" [dismissOnSelect]="true">
+                <ng-template>
+                    <ion-content>
+                        <ion-list>
+                            <ion-item [button]="true" [detail]="false" (click)="cerrarSesion()">
+                                <ion-icon name="exit-outline"></ion-icon>
+                                <ion-label>&nbsp;Cerrar Sesión</ion-label>
+                            </ion-item>
+                        </ion-list>
+                    </ion-content>
+                </ng-template>
+            </ion-popover>
+        </ion-buttons>
+        <ion-title>Peliculas y Series</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+    <ion-searchbar (ionChange)="search()"></ion-searchbar>
+
+    <ion-progress-bar type="indeterminate" *ngIf="isSearch"></ion-progress-bar>
+
+    <ion-list>
+        <ion-grid>
+            <ion-row>
+                <ion-col size="6" style="padding: 0;" *ngFor="let movie of movies">
+                    <ion-card (click)="showDetails(movie)">
+                        <img [src]="movie.image?.medium" />
+                        <ion-card-header>
+                            <ion-card-subtitle>{{movie.language}}</ion-card-subtitle>
+                            <ion-card-title style="font-size: 1.5em;">{{movie.name}}</ion-card-title>
+                        </ion-card-header>
+                        <ion-card-content>
+                            <ion-rating rate="{{ (movie.rating.average*5)/10 }}" readonly="true" size="small">
+                            </ion-rating>
+                        </ion-card-content>
+                    </ion-card>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-list>
+
+    <ion-modal [isOpen]="isModalOpen">
+        <ng-template>
+            <ion-header>
+                <ion-toolbar>
+                    <ion-title>Detalles de la Pelicula o Serie</ion-title>
+                    <ion-buttons slot="end">
+                        <ion-button (click)="hideDetails()">Close</ion-button>
+                    </ion-buttons>
+                </ion-toolbar>
+            </ion-header>
+            <ion-content class="ion-padding">
+                <img [src]="movieSelected?.image.original" alt="movie-image" style="width: 500px;">
+                <hr>
+                <h5>Titulo: <span>{{movieSelected?.name}}</span> </h5>
+                <h5>Idioma: <span>{{movieSelected?.language}}</span></h5>
+                <h5>Calificación:
+                    <ion-rating rate="{{ (movieSelected?.rating.average*5)/10 }}" readonly="true" size="small"></ion-rating>
+                </h5>
+                <h5>Generos:</h5>
+                <label *ngFor="let genero of movieSelected?.genres"> {{ genero }} </label>
+                <h5>Resumen:</h5>
+                <div [innerHTML]="movieSelected?.summary"></div>
+            </ion-content>
+        </ng-template>
+    </ion-modal>
+
+</ion-content>
