@@ -31,16 +31,18 @@ export class HomePage implements OnInit {
   }
 
   getMovies(){
-    // this.variablesGL.loadingActionShow('Espere por favor...');
-    this.moviesService.getMovies().subscribe(response => {
-      this.movies = response;
-      console.log('peliculas ', response[0]);
-      // this.variablesGL.loadingActionDismiss();
-    },
-    err => {
-      console.log('Error al obtener las peliculas');
-      // this.variablesGL.loadingActionDismiss();
-    })
+    this.variablesGL.loadingActionShow('Espere por favor...');
+    setTimeout(() => {
+      this.moviesService.getMovies().subscribe(response => {
+        this.movies = response;
+        console.log('peliculas ', response[0]);
+        this.variablesGL.loadingActionDismiss();
+      },
+      err => {
+        console.log('Error al obtener las peliculas');
+        this.variablesGL.loadingActionDismiss();
+      });
+    }, 2000);
   }
 
   searchMovies(query: string){
@@ -52,6 +54,7 @@ export class HomePage implements OnInit {
     },
     err => {
       console.log('Error al filtrar las peliculas y series');
+
       this.getMovies();
       this.isSearch = false;
     });

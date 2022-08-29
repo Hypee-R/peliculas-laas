@@ -63,7 +63,7 @@ export class VariablesService {
   removeCredentials(){
     localStorage.removeItem('auth');
     this.router.navigateByUrl('/welcome');
-    // location.reload();
+    location.reload();
   }
 
 

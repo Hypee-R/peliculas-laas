@@ -8,7 +8,7 @@ export class UsuarioModel{
 export interface Usuario {
   gender:     string;
   name:       Name;
-  nameComplete?:string;
+  nameComplete?: string;
   location:   Location;
   email:      string;
   login:      Login;
@@ -47,7 +47,7 @@ export interface Coordinates {
 }
 
 export interface Street {
-  number: number;
+  numberr: number;
   name:   string;
 }
 
